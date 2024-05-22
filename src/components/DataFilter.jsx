@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Switch, Divider, Input } from 'antd';
 
 export const DataFilter = ({ columns, data, filter, setFilter }) => {
@@ -29,12 +29,13 @@ export const DataFilter = ({ columns, data, filter, setFilter }) => {
             <div className="filter flex">
                 {columns
                 .filter((val) => val !== 'id' && val !== 'name')
-                .map((val) => {
+                .map((val, i) => {
                     const options = (Object.keys(Object.groupBy(data, (item) => item[val]))).filter((data) => data !== 'undefined');
                     return (
-                        <>
+                        <Fragment key={i}>
+                            {i !== 0 ? <Divider type="vertical" className='divider'/> : null}
                             <div className='flex'>
-                                <label>{val}:</label>
+                                <label>{val.toUpperCase()}:</label>
                                 <div className='column'>
                                     {options.map ((data, i) => (
                                         <div key={i} className='flex'>
@@ -44,15 +45,17 @@ export const DataFilter = ({ columns, data, filter, setFilter }) => {
                                     ))}
                                 </div>
                             </div>
-                            <Divider type="vertical" className='divider'/>
-                        </>
+                        </Fragment>
                     );
                 })}
                 {columns.findIndex((val) => val === 'name') > -1 ? (
-                    <div className='flex'>
-                        <label>Name:</label>
-                        <Input className='input' onChange={onChangeName}/>
-                    </div>
+                    <Fragment>
+                        <Divider type="vertical" className='divider'/>
+                        <div className='flex'>
+                            <label>Name:</label>
+                            <Input className='input' onChange={onChangeName}/>
+                        </div>
+                    </Fragment>
                 ) : null}
             </div>
         </div>

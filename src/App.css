@@ -70,21 +70,26 @@ label {
 .flex {
   display: flex;
 }
+
 .column {
   display: flex;
   flex-direction: column;
   gap: 8px
 }
+
 .mr-5 {
   margin-right: 5px;
 }
+
 .divider {
   height: auto;
   margin: 0 20px;
 }
+
 .input {
   height: fit-content
 }
+
 .m-30 {
   margin: 30px;
 }

@@ -61,7 +61,9 @@ const MainView = () => {
       <Table
         className='m-30'
         dataSource={filteredData}
-        columns={columns.map((name) => ({ title: name, dataIndex: name, key: name }))}/>
+        pagination={{ hideOnSinglePage: true }}
+        columns={columns.map((name) => ({ title: name.toUpperCase(), dataIndex: name, key: name }))}
+      />
     </div>
   );
 }
